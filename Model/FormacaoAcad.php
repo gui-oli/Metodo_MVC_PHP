@@ -77,7 +77,26 @@ class FormacaoAcad
         }
     }
 
+    public function deletarBD($id)
+    {
+        require_once 'ConexaoBD.php';
 
+        $con = new ConexaoBD();
+        $conn = $con->conectar();
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "DELETE FROM formacaoAcademica where idusuario = ".$id ;
+
+        if ($conn->query($sql) === TRUE) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+        $conn->close();
+    }
     
     public function listaFormacoes($idusuario)
     {

@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 <div class="w3-padding-128 w3-content w3-text-grey" id="eProfissional">
     <h2 class="w3-text-cyan">Experiência Profissional</h2>
 </div>Formulário:
@@ -67,7 +76,7 @@
                 <th>Descrição</th>
                 <th>Apagar</th>
             </tr>
-            <thead>
+        <thead>
 
                 <?php
  $ePro = new ExperienciaProfissional();
@@ -82,9 +91,8 @@
  echo '<td style="width: 65%;">'.$row->descricao.'</td>';
  echo '<td style="width: 5%;">
  <form action="/Controller/Navegacao.php" method="post">
-<input type="hidden" name="idEP" value="'.$row->idexperienciaprofissional.'">
- <button name="btnExcluirEP" class="w3-button w3-block w3-blue w3-cell w3-
-round-large">
+ <input type="hidden" name="idEP" value="'.$row->idexperienciaprofissional.'">
+ <button name="btnExcluirEP" class="w3-button w3-block w3-blue w3-cell w3-round-large">
  <i class="fa fa-user-times"></i> </button></td>
  </form>';
 echo '</tr>';
@@ -92,3 +100,5 @@ echo '</tr>';
  ?>
     </table>
 </div>
+</body>
+</html>

@@ -1,60 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/fontawesome.min.css">
+    <title>Cadastro de Curriculos</title>
+</head>
+
+<body>
 <?php
-include("./Model/OutrasFormacoes.php");
+ include_once 'Controller/Navegacao.php';
+?>
+</body>
 
-$exp = new ExperienciaProfissional();
-$form = new FormacaoAcad();
-$user = new Usuario();
-$oter = new OutrasFormacoes();
-
-
-/*--------------------------------*/
-/*     inserir dados no Banco     */ 
-/*--------------------------------*/
-$oter -> setIdUsuario(4);
-$oter -> setInicio('1956-04-02');
-$oter -> setFim('2072-10-02');
-$oter -> setDescricao('lampada');
-
-$resultado = $oter-> inserirBD();
-
-if ($resultado) {
-    echo "funcionou";
-} else {
-    echo "deu ruim";
-}
-
-/*--------------------------------*/
-/*     deletar dados no Banco     */ 
-/*--------------------------------*/
-
-
- $sumir = $oter -> deletarBD(2) ;
-
- if ($sumir) {
-    echo "funcionou";
-} else {
-    echo "deu ruim";
-}
-
-/*--------------------------------*/
-/*     selecionar dados no Banco  */ 
-/*--------------------------------*/
-
-
-$r = $oter->listaDeOutrasFormacoes(4);
-
-foreach ($r as $u){ 
-    echo $u['idusuario'];
-    echo '<br>';
-    echo $u['inicio'];
-    echo '<br>';
-    echo $u['fim'];
-    echo '<br>';
-    echo $u['descricao'];
-}
-
-
-
-
-
-
+</html>

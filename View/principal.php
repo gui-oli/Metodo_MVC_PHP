@@ -42,6 +42,24 @@
 </head>
 
 <body class="w3-light-grey">
+
+
+<?php
+
+ include_once '../Controller/FormacaoAcadController.php';
+
+ include_once '../Model/Usuario.php';
+ if(!isset($_SESSION))
+ {
+ session_start();
+ }
+ 
+?>
+value="<?php echo unserialize($_SESSION['Usuario'])->getID();?>"
+value="<?php echo unserialize($_SESSION['Usuario'])->getNome();?>"
+value="<?php echo unserialize($_SESSION['Usuario'])->getDataNascimento();?>"
+value="<?php echo unserialize($_SESSION['Usuario'])->getCPF();?>"
+value="<?php echo unserialize($_SESSION['Usuario'])->getEmail();?>"
 </body>
 
 </html>
@@ -121,7 +139,7 @@
             <div class="w3-row w3-section">
                 <div class="w3-center centro2">
                     <button name="btnAtualizar" class="w3-button w3-block w3-margin w3-blue w3-cellw3-round-large"
-                        style="width: 90%;">Atualizar</button>
+                        style="width: 90%;">atualizar</button>
                 </div>
             </div>
         </form>
@@ -340,3 +358,70 @@
         </table>
     </div>
 </div>
+    <div class="w3-container">
+ <table class="w3-table-all w3-centered">
+ <thead>
+ <tr class="w3-center w3-blue">
+ <th>Início</th>
+ <th>Fim</th>
+ <th>Descrição</th>
+ <th>Apagar</th>
+ </tr>
+ <thead>
+
+ <?php
+  $fCon = new FormacaoAcadController();
+ $results = $fCon->gerarLista(unserialize($_SESSION['Usuario'])->getID());
+ if($results != null)
+
+ while($row = $results->fetch_object()) {
+    echo '<tr>';
+    echo '<td style="width: 10%;">'.$row->inicio.'</td>';
+    echo '<td style="width: 10%;">'.$row->fim.'</td>';
+
+    echo '<td style="width: 65%;">'.$row->descricao.'</td>';
+    echo '<td style="width: 5%;">
+    <form action="/Controller/Navegacao.php" method="post">
+    <input type="hidden" name="id" value="'.$row->idformacaoAcademica.'">
+    <button name="btnExcluirFA" class="w3-button w3-block w3-blue w3-cell w3-roundlarge">
+    <i class="fa fa-user-times"></i> </button></td>
+    </form>';
+    echo '</tr>';
+    }
+ ?>
+ </table>
+
+ <div class="w3-container">
+<table class="w3-table-all w3-centered">
+<thead>
+ <tr class="w3-center w3-blue">
+
+ <th>Início</th>
+ <th>Fim</th>
+ <th>Descrição</th>
+ <th>Apagar</th>
+ </tr>
+<thead>
+
+ <?php
+ $fCon = new OutrasFormacoesController();
+ $results = $fCon->gerarLista(unserialize($_SESSION['Usuario'])->getID());
+ if($results != null)
+
+ while($row = $results->fetch_object()) {
+ echo '<tr>';
+ echo '<td style="width: 10%;">'.$row->inicio.'</td>';
+ echo '<td style="width: 10%;">'.$row->fim.'</td>';
+ echo '<td style="width: 65%;">'.$row->descricao.'</td>';
+ echo '<td style="width: 5%;">
+ <form action="/Controller/Navegacao.php" method="post">
+ <input type="hidden" name="id" value="'.$row->idoutrasformacoes.'">
+ <button name="btnExcluirOF" class="w3-button w3-block w3-blue w3-cell w3-round-large">
+ <i class="fa fa-user-times"></i> </button></td>
+ </form>';
+ echo '</tr>';
+ }
+ ?>
+</table>
+</div>
+ 
