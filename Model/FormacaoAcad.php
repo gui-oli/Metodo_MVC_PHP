@@ -53,6 +53,8 @@ class FormacaoAcad
         return $this->descricao;
     }
 
+
+
     public function inserirBD()
     {
         require_once 'ConexaoBD.php';
@@ -77,7 +79,7 @@ class FormacaoAcad
         }
     }
 
-    public function deletarBD($id)
+    public function excluirBD($id)
     {
         require_once 'ConexaoBD.php';
 

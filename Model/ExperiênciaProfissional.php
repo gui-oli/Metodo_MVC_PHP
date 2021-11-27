@@ -64,6 +64,9 @@ class ExperienciaProfissional
     {
         return $this->descricao;
     }
+
+
+    
     public function inserirBD()
     {
         require_once 'ConexaoBD.php';

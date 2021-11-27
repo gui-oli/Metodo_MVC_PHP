@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <form action="/Controller/navegacao.php" method="post"
+    <form action="./Controller/Navegacao.php" method="post"
         class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin w3-display-middle" style="width: 30%;">
         <form action="" method="post"
             class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin w3-display-middle" style="width: 30%;">
@@ -37,30 +37,20 @@
 
             <div class="w3-row w3-section">
                 <div class="w3-half">
-                    <button name="btnLogin" class="w3-button w3-block w3-margin w3-blue w3-cell w3-roundlarge"
-                        style="width: 90%;">Entrar</button>
-                    <?php
-                    if(isset($_POST["btnLogin"]))
-                    {
-                    require_once '../Controller/UsuarioController.php';
-
-                    $uController = new UsuarioController();
-
-                    if($uController->login($_POST['txtLogin'], $_POST['txtSenha']))
-                    {
-                    include_once '../View/principal.php';
-                    }
-                    else
-                    {
-                    include_once '../View/cadastroNaoRealizado.php';
-                    }
-                    }
-                    ?>
+                    <button name="btnLogin" class="w3-button w3-block w3-margin w3-blue w3-cell w3-roundlarge" style="width: 90%;">
+                    Entrar
+                    </button>
                 </div>
+                
                 <div class="w3-half">
                     <button name="btnPrimeiroAcesso" class="w3-button w3-block w3-margin w3-blue w3-cell w3-round-large"
                         style="width: 90%;">Primeiro Acesso?</button>
                 </div>
+                <div class="w3-center">
+                    <button name="btnADM" class=" w3-block w3-margin w3-blue w3-cell w3-round-large"
+                        style="width: 90%;">Login como Administrador</button>
+                </div>
+            </div>
             </div>
         </form>
 </body>

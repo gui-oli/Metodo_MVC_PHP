@@ -1,11 +1,9 @@
 <?php
-class Usuario
+class Administrador
 {
    private $id;
    private $nome;
    private $cpf;
-   private $email;
-   private $dataNascimento;
    private $senha;
 
    //ID
@@ -38,26 +36,6 @@ class Usuario
       return $this->cpf;
    }
 
-   //Email
-   public function setEmail($email)
-   {
-      $this->email = $email;
-   }
-   public function getEmail()
-   {
-      return $this->email;
-   }
-
-   //Data de nascimento
-   public function setDataNascimento($dataNascimento)
-   {
-      $this->dataNascimento = $dataNascimento;
-   }
-   public function getDataNascimento()
-   {
-      return $this->dataNascimento;
-   }
-
    // Senha
    public function setSenha($senha)
    {
@@ -68,9 +46,77 @@ class Usuario
       return $this->senha;
    }
 
+   public function carregarAdministrador($cpf)
+   {
+      require_once 'ConexaoBD.php';
+
+      $con = new ConexaoBD();
+      $conn = $con->conectar();
+      if ($conn->connect_error) {
+         die("Connection failed: " . $conn->connect_error);
+      }
+      $sql = "SELECT * FROM administrador WHERE cpf = " . $cpf;
+      $re = $conn->query($sql);
+      $r = $re->fetch_object();
+      if ($r != null) {
+         $this->id = $r->idadministrador;
+         $this->nome = $r->nome;
+         $this->cpf = $r->cpf;
+         $this->senha = $r->senha;
+         $conn->close();
+         return true;
+      } else {
+         $conn->close();
+         return false;
+      }
+   }
+
+   public function listaCadastrados()
+   {
+   require_once 'ConexaoBD.php';
+  
+   $con = new ConexaoBD();
+   $conn = $con->conectar();
+   if ($conn->connect_error) {
+   die("Connection failed: " . $conn->connect_error);
+   }
+   $sql = "SELECT idadministrador, nome FROM administrador;" ;
+   $re = $conn->query($sql);
+   $conn->close();
+   return $re;
+   }
+  
 
 
-    /* inserir */ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /* inserir */
    public function inserirBD()
    {
       require_once 'ConexaoBD.php';
@@ -105,8 +151,8 @@ class Usuario
       if ($conn->connect_error) {
          die("Connection failed: " . $conn->connect_error);
       }
-      
-      $sql = "SELECT * FROM usuario WHERE cpf = $cpf";
+
+      $sql = "SELECT * FROM usuario WHERE cpf = " . $cpf;
       $re = $conn->query($sql);
       $r = $re->fetch_object();
 
@@ -118,34 +164,12 @@ class Usuario
          $this->dataNascimento = $r->dataNascimento;
          $this->senha = $r->senha;
          $conn->close();
-      
+
          return true;
       } else {
          $conn->close();
-      
+
          return false;
-      }
-   }
-
-   public function atualizarBD()
-   {
-      require_once 'ConexaoBD.php';
-      $con = new ConexaoBD();
-      $conn = $con->conectar();
-
-      if ($conn->connect_error) {
-         die("Connection failed: " . $conn->connect_error);
-      }
-
-      $sql = "UPDATE usuario SET nome = '" .$this->nome. "', cpf = '" .$this->cpf. "', dataNascimento = '" .$this->dataNascimento. "', email='".$this->email."' WHERE idusuario ='". $this->id. "'";
-      
-      if ($conn->query($sql) === TRUE) {
-         $conn->close();
-         return TRUE;
-
-      } else {
-         $conn->close();
-         return FALSE;
       }
    }
 }
