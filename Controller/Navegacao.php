@@ -70,6 +70,7 @@ if (isset($_POST["btnAtualizar"])) {
     include_once '../View/operacaoNaoRealizada.php';
   }
 }
+
 if (isset($_POST["btnAtualizacaoCadastro"]) || isset($_POST["btnOperacaoNRealizada"]) || isset($_POST["btnInfInserir"])) {
   include_once '../View/principal.php';
 }
@@ -85,6 +86,7 @@ if (isset($_POST["btnExcluirFA"])) {
     include_once '../View/operacaoNaoRealizda.php';
   }
 }
+
 if (isset($_POST["btnPrincipal"]) || isset($_POST["btnAtualizacaoCadastro"]) || isset($_POST["btnCadRealizado"]) || isset($_POST["btnInfInserir"]) || isset($_POST["btnInfExcluir"])) {
   include_once '../View/principal.php';
 }
@@ -122,4 +124,61 @@ if(isset($_POST["btnListarCadastrados"]))
  if(isset($_POST["btnVoltar"]))
 {
  include_once '../View/ADMPrincipal.php';
+}
+
+
+# Adicionando Formação
+if (isset($_POST["btnAddFormacao"])) {
+  require_once '../Controller/FormacaoAcadController.php';
+  include_once '../Model/Usuario.php';
+  
+  $fController = new FormacaoAcadController();
+
+  if (
+    $fController->inserir(date('Y-m-d', strtotime($_POST['txtInicioFA'])), date('Y-m-d', strtotime($_POST["txtFimFA"])), $_POST["txtDescFA"], unserialize($_SESSION['Usuario'])->getID()) !=
+    false
+  ) {
+    include_once '../View/informacaoInserida.php';
+  } else {
+    include_once '../View/operacaoNaoRealizada.php';
+  }
+}
+
+
+
+if(isset($_POST["btnAddEP"]))
+{
+require_once '../Controller/ExperienciaProfissionalController.php';
+include_once '../Model/Usuario.php';
+
+$epController = new ExperienciaProfissionalController();
+
+if($epController->inserir(date('Y-m-d', strtotime($_POST['txtInicioEP'])), date('Y-m-d',
+strtotime($_POST["txtFimEP"])), $_POST["txtEmpEP"], $_POST["txtDescEP"],
+unserialize($_SESSION['Usuario'])->getID()) != false)
+{
+ include_once '../View/informacaoInserida.php';
+}
+else
+ {
+ include_once '../View/operacaoNRealizada.php';
+ }
+}
+
+
+if(isset($_POST["btnExcluirEP"]))
+{
+require_once '../Controller/ExperienciaProfissionalController.php';
+include_once '../Model/Usuario.php';
+
+$epController = new ExperienciaProfissionalController();
+
+if($epController->remover($_POST['idEP']) == true)
+{
+ include_once '../View/informacaoExcluida.php';
+}
+else
+{
+ include_once '../View/operacaoNRealizada.php';
+}
 }

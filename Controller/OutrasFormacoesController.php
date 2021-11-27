@@ -27,9 +27,9 @@ class OutrasFormacoesController{
  require_once '../Model/OutrasFormacoes.php';
  $formacao = new OutrasFormacoes();
 
- return $results = $formacao->listaDeOutrasFormacoes($idusuario);
+  $results = $formacao->listaDeOutrasFormacoes($idusuario);
 
-
+  return $results;
 
  }
 }

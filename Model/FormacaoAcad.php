@@ -66,8 +66,8 @@ class FormacaoAcad
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "INSERT INTO usuario (nome, cpf, email, senha)
-    VALUES ('" . $this->nome . "', '" . $this->cpf . "', '" . $this->email . "','" . $this->senha . "')";
+        $sql = "INSERT INTO formacaoacademica (idusuario, inicio, fim, descricao)
+    VALUES ('" . $this->idusuario . "', '" . $this->inicio . "', '" . $this->fim . "','" . $this->descricao . "')";
 
         if ($conn->query($sql) === TRUE) {
             $this->id = mysqli_insert_id($conn);
@@ -90,7 +90,7 @@ class FormacaoAcad
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "DELETE FROM formacaoAcademica where idusuario = ".$id ;
+        $sql = "DELETE FROM formacaoAcademica where idformacaoAcademica = ".$id ;
 
         if ($conn->query($sql) === TRUE) {
             return TRUE;

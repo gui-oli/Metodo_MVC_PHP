@@ -97,7 +97,7 @@ class ExperienciaProfissional
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        $sql = "DELETE FROM experienciaprofissional WHERE idexperienciaprofissional = '" . $id . "';";
+        $sql = "DELETE FROM experienciaprofissional WHERE idexperienciaprofissional = '" . $id . "'";
 
         if ($conn->query($sql) === true) {
 
