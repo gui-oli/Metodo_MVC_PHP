@@ -80,7 +80,7 @@
         </header>
 
         <!-- Dados Pessoais -->
-        <div class="centro ">
+        <div class="centro " >
             <div class="w3-padding-128 w3-content w3-text-grey" id="dPessoais">
                 <h2 class="w3-text-cyan centro1">Dados Pessoais</h2>
             </div>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
 
-                <div class="w3-row w3-section">
+                <div class="w3-row w3-section" >
                     <div class="w3-center centro2">
                         <button name="btnAtualizar" class="w3-button w3-block w3-margin w3-blue w3-cellw3-round-large" style="width: 90%;">atualizar</button>
                     </div>
